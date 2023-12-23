@@ -67,8 +67,9 @@ class CardController extends Controller
             $data = $this->cardRepository->store_card($request);
 
             if($data){
-                $response['data'] = $data;
-                return response()->json($response, 200);
+                // $response['data'] = $data;
+                return view('layouts.pages.common.files.card_items', $data)->with('message', 'Data saved successfully');
+                // return response()->json($response, 200);
             }else{
                 throw new \Exception('Not found.', 404);
             }
@@ -93,6 +94,23 @@ class CardController extends Controller
             if($data){
                 $response['data'] = $data;
                 return response()->json($response, 200);
+            }else{
+                throw new \Exception('Not found.', 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function update_card_status(Request $request){
+        try {
+            $data = $this->cardRepository->update_card_status($request);
+            if($data){
+                return view('layouts.pages.common.files.card_items', $data)->with('message', 'Data status updated successfully');
+                // return response()->json($response, 200);
             }else{
                 throw new \Exception('Not found.', 404);
             }

@@ -9,6 +9,7 @@ interface CardRepositoryInterface
     public function get_card_details($request);
     public function store_card($request);
     public function update_card($request);
+    public function update_card_status($request);
     public function store_card_attachment($request);
     public function store_card_checklist($request);
     public function store_card_task($request);

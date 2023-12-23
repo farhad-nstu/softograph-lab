@@ -41,6 +41,7 @@ Route::group(['prefix' => 'cards', 'as' => 'cards.'], function () {
     // Axios routes
     Route::post('/card-store', [CardController::class, 'store_card'])->name('store_card');
     Route::post('/card-update', [CardController::class, 'update_card'])->name('update_card');
+    Route::post('/card-status-update', [CardController::class, 'update_card_status'])->name('update_card_status');
     Route::get('/get-card-details', [CardController::class, 'get_card_details'])->name('get_card_details');
     Route::post('/store-card-attachment', [CardController::class, 'store_card_attachment'])->name('store_card_attachment');
     Route::post('/remove-card-attachment', [CardController::class, 'remove_card_attachment'])->name('remove_card_attachment');

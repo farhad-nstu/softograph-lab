@@ -20,11 +20,6 @@
                                 <li><a href="<?php echo e(route('cards.index')); ?>"><?php echo e(__('Card List')); ?></a>
                                 </li>
                             <?php endif; ?>
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('cards.create')): ?>
-                                <li><a href="<?php echo e(route('cards.create')); ?>"><?php echo e(__('Add New Card')); ?></a>
-                                </li>
-                            <?php endif; ?>
                         </ul>
                     </li>
                 <?php endif; ?>

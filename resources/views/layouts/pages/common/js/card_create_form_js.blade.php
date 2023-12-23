@@ -8,12 +8,12 @@
 
             axios.post(form.action, form_data, {})
                 .then(function (response) {
-                    message = response.data.data.message;
-                    toastr.options = {
-                        "closeButton" : true,
-                        "progressBar" : true
-                    }
-                    toastr.success(message);
+                    {{--  message = response.data.data.message;
+                    console.log(response.data)
+                    console.log(response.data.data)
+                    data = response.data.data  --}}
+                    console.log(response)
+                    $("#card_items_data").empty().html(response.data);
 
                     $("#id_name_text").text('')
                     $("#id_status_text").text('')

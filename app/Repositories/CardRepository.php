@@ -20,7 +20,7 @@ class CardRepository implements CardRepositoryInterface
     }
 
     public function index(){
-        $data['cards'] = Card::paginate(50);
+        $data['cards'] = Card::all();
         $data['statuses'] = Enums::CARD_STATUSES;
         $data['title'] = 'CARD LIST';
         return $data;
@@ -43,6 +43,8 @@ class CardRepository implements CardRepositoryInterface
         $card = Card::create($requestedData);
         if($card){
             $data['message'] = 'Card data saved successfully';
+            $data['cards'] = Card::all();
+            $data['statuses'] = Enums::CARD_STATUSES;
             return $data;
         }
         return false;
@@ -54,6 +56,19 @@ class CardRepository implements CardRepositoryInterface
         if($card){
             $data['card'] = Card::find($request->card_id);
             $data['message'] = 'Card updated successfully';
+            return $data;
+        }
+        return false;
+    }
+
+    public function update_card_status($request){
+        $target_div_card_status = Card::where('id', $request->target_status_div)->pluck('status')->first();
+        $card = Card::find($request->card_id);
+        $card->status = $target_div_card_status;
+        if($card->update()){
+            $data['message'] = 'Card status updated successfully';
+            $data['cards'] = Card::all();
+            $data['statuses'] = Enums::CARD_STATUSES;
             return $data;
         }
         return false;
