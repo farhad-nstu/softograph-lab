@@ -85,7 +85,7 @@
                                                 'value_key' => 'name',
                                             ])
                                         </div>
-                                        <button type="submit" class="btn btn-primary" id="submit_claim">Submit</button>
+                                        <button type="submit" class="btn btn-primary" id="submit_card">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
 @stop
 
 @push('script')
-@include('layouts.pages.common.js.edit_card_form_js')
+@include('layouts.pages.common.js.card_edit_form_js')
 @include('layouts.pages.common.js.card_attachment_uploader_js')
 @include('layouts.pages.common.js.card_attachment_setter_js')
 @include('layouts.pages.common.js.card_checklist_setter_js')

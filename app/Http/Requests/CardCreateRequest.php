@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests;
 
 use App\Rules\CardUniqueStatusName;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductCreateRequest extends FormRequest
+class CardCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

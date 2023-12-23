@@ -7,6 +7,7 @@ interface CardRepositoryInterface
     public function index();
     public function show(int $id);
     public function get_card_details($request);
+    public function store_card($request);
     public function update_card($request);
     public function store_card_attachment($request);
     public function store_card_checklist($request);
@@ -17,7 +18,6 @@ interface CardRepositoryInterface
     public function remove_card_checklist($request);
     public function remove_card_task($request);
     public function create();
-    public function store($request);
     public function edit(int $id);
     public function destroy(int $id);
 }

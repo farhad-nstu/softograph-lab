@@ -2,24 +2,11 @@
 @section('title', $title)
 @push('style')
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/fileinput.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('backend/assets/libs/toastr/css/toastr.min.css') }}">
 
     <style>
         .info {
             background-color: aqua;
-        }
-        #uploaded_documents {
-            max-height: 355px;
-            overflow-y: auto;
-        }
-        #added_expenses {
-            max-height: 189px;
-            overflow-y: auto;
-        }
-        #uploaded_documents img {
-            height: 100px;
-            width: 100px;
         }
     </style>
 @endpush
@@ -32,9 +19,10 @@
                         <div class="col-md-6">
                             <h4 class="card-title">@yield('title')</h4>
                         </div>
-
                         <div class="col-md-6">
                             <div class="d-flex flex-wrap gap-2 float-end">
+                                <a href="javascript:void(0)" id="cardCreateButton" class="btn btn-primary waves-effect"><i
+                                    class="fas-light fas fa-plus"></i> Add New</a>
                                 <a href="{{ url()->previous() }}" class="btn btn-light waves-effect"><i
                                         class="fas-light fas fa-angle-double-left"></i> Back</a>
                             </div>
@@ -44,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-12">
+    {{--  <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
                 <form action="{{ route(\Request::route()->getName()) }}" method="get">
@@ -88,7 +76,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>  --}}
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
@@ -122,4 +110,20 @@
             </div>
         </div>
     </div>
+    @include('layouts.pages.common.files.card_create_modal')
 @stop
+
+@push('script')
+@include('layouts.pages.common.js.card_create_form_js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+<script src="{{ asset('backend/assets/libs/toastr/js/toastr.min.js') }}"></script>
+<script src="{{ asset('js/form_clearer.js') }}"></script>
+    <script>
+        $("#cardCreateButton").on("click", function() {
+            $("#cardCreateModal").modal('show');
+        });
+        $(".modalCloseBtn").on("click", function() {
+            $("#cardCreateModal").modal('hide');
+        });
+    </script>
+@endpush

@@ -38,6 +38,16 @@ class CardRepository implements CardRepositoryInterface
         return $card;
     }
 
+    public function store_card($request){
+        $requestedData = $request->except('_token');
+        $card = Card::create($requestedData);
+        if($card){
+            $data['message'] = 'Card data saved successfully';
+            return $data;
+        }
+        return false;
+    }
+
     public function update_card($request){
         $requestedData = $request->except('_token', 'card_id');
         $card = Card::where('id', $request->card_id)->update($requestedData);
@@ -144,11 +154,6 @@ class CardRepository implements CardRepositoryInterface
         $data['statuses'] = Enums::CARD_STATUSES;
         $data['title'] = 'CARD CREATE';
         return $data;
-    }
-
-    public function store($request){
-        $card = Card::create($request);
-        return $card;
     }
 
     public function edit(int $id){

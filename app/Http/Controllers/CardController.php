@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CardAttachmentCreateRequest;
 use App\Http\Requests\CardChecklistCreateRequest;
+use App\Http\Requests\CardCreateRequest;
 use App\Http\Requests\CardTaskCreateRequest;
 use App\Http\Requests\CardUpdateRequest;
 use App\Interfaces\CardRepositoryInterface;
@@ -45,6 +46,25 @@ class CardController extends Controller
             }
 
             $data = $this->cardRepository->get_card_details($request);
+
+            if($data){
+                $response['data'] = $data;
+                return response()->json($response, 200);
+            }else{
+                throw new \Exception('Not found.', 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function store_card(CardCreateRequest $request){
+        $response = [];
+        try {
+            $data = $this->cardRepository->store_card($request);
 
             if($data){
                 $response['data'] = $data;
