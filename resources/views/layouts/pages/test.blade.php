@@ -81,30 +81,49 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body table-responsive">
-                    <div class="col-md-12">
-                        <div class="row">
-                            @foreach ($statuses as $status)
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4 class="card-title">{{ strtoupper($status) }}</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            @foreach ($cards as $card)
-                                                @if($card->status == $status)
-                                                    <a href="{{ route('cards.show', $card->id) }}" target="_blank">
-                                                        <div class="row border p-2">
-                                                            <h5>{{ $card->name }}</h5>
-                                                        </div>
-                                                    </a>
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                    </div>
+                    <div class="col-md-3">
+                        @foreach ($statuses as $status)
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">{{ strtoupper($status) }}</h4>
                                 </div>
+                                <div class="card-body">
+                                    @foreach ($cards as $card)
+                                        @if($card->status == $status)
+                                            <div class="row border">
+                                                <h5>{{ $card->name }}</h5>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
                             @endforeach
                         </div>
-                    </div>
+                    {{--  <table class="table table-bordered table-striped  nowrap w-100">
+                        <thead>
+                            <tr class="table-hd-bg">
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if($cards && count($cards) > 0)
+                                @foreach ($cards as $card)
+                                    <tr>
+                                        <td>{{ $card->name }}</td>
+                                        <td>{{ $card->status }}</td>
+                                        <td>
+                                            @can('cards.show')
+                                                <a href="{{ route('cards.show', $card->id) }}"
+                                                    class="btn btn-primary waves-effect waves-light" target="_blank"><i class="fas fa-eye"></i></a>
+                                            @endcan
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>  --}}
                 </div>
             </div>
         </div>

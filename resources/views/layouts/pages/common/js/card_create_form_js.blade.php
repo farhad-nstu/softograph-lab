@@ -1,7 +1,6 @@
 <script>
     $('#id_card_create_form').on("submit", function(event) {
             event.preventDefault();
-            alert("g")
             form = this;
             jquery_form = $(this);
             alert_container = jquery_form.children('.ajax-form-alert-container');
@@ -44,7 +43,6 @@
                         }
                     }
                     if (error instanceof ReferenceError) {
-                        console.log(error.message)
                         toastr.options = {
                             "closeButton" : true,
                             "progressBar" : true

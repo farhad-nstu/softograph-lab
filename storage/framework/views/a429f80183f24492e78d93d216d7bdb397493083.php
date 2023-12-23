@@ -1,9 +1,10 @@
 <script>
-    $('#id_card_create_form').on("submit", function(event) {
+    $('#id_card_edit_form').on("submit", function(event) {
             event.preventDefault();
-            form = this;
-            jquery_form = $(this);
+            form = this; // the form
+            jquery_form = $(this); // for selecting different element in the form using jquery
             alert_container = jquery_form.children('.ajax-form-alert-container');
+
             form_data = new FormData(form);
 
             axios.post(form.action, form_data, {})
@@ -14,10 +15,6 @@
                         "progressBar" : true
                     }
                     toastr.success(message);
-
-                    $("#id_name_text").text('')
-                    $("#id_status_text").text('')
-                    $("#cardCreateModal").modal('hide');
                 })
                 .catch(function (error) {
                     if (error.response) {
@@ -43,6 +40,7 @@
                         }
                     }
                     if (error instanceof ReferenceError) {
+                        console.log(error.message)
                         toastr.options = {
                             "closeButton" : true,
                             "progressBar" : true
@@ -54,4 +52,4 @@
                 });
         });
 </script>
-<?php /**PATH C:\xampp\htdocs\softolab\resources\views/layouts/pages/common/js/card_create_form_js.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\softolab\resources\views/layouts/pages/common/js/card_edit_form_js.blade.php ENDPATH**/ ?>

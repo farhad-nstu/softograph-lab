@@ -36,31 +36,30 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body table-responsive">
-                    <table class="table table-bordered table-striped  nowrap w-100">
-                        <thead>
-                            <tr class="table-hd-bg">
-                                <th>Name</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if($cards && count($cards) > 0): ?>
-                                <?php $__currentLoopData = $cards; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $card): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <tr>
-                                        <td><?php echo e($card->name); ?></td>
-                                        <td><?php echo e($card->status); ?></td>
-                                        <td>
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('cards.show')): ?>
-                                                <a href="<?php echo e(route('cards.show', $card->id)); ?>"
-                                                    class="btn btn-primary waves-effect waves-light" target="_blank"><i class="fas fa-eye"></i></a>
-                                            <?php endif; ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <?php $__currentLoopData = $statuses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $status): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title"><?php echo e(strtoupper($status)); ?></h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <?php $__currentLoopData = $cards; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $card): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($card->status == $status): ?>
+                                                    <a href="<?php echo e(route('cards.show', $card->id)); ?>" target="_blank">
+                                                        <div class="row border p-2">
+                                                            <h5><?php echo e($card->name); ?></h5>
+                                                        </div>
+                                                    </a>
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
