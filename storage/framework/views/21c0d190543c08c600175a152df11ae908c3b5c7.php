@@ -109,7 +109,7 @@
                                         <td>
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('cards.show')): ?>
                                                 <a href="<?php echo e(route('cards.show', $card->id)); ?>"
-                                                    class="btn btn-primary waves-effect waves-light"><i class="fas fa-eye"></i></a>
+                                                    class="btn btn-primary waves-effect waves-light" target="_blank"><i class="fas fa-eye"></i></a>
                                             <?php endif; ?>
                                         </td>
                                     </tr>

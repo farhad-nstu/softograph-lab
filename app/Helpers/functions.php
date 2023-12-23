@@ -73,6 +73,8 @@ if(! function_exists('card_permissions')){
             'cards.show',
             'cards.edit',
             'cards.delete',
+            'cards.get_card_details',
+            'cards.view_card_details'
         ];
     }
 }

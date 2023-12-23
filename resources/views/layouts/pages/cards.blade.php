@@ -110,7 +110,7 @@
                                         <td>
                                             @can('cards.show')
                                                 <a href="{{ route('cards.show', $card->id) }}"
-                                                    class="btn btn-primary waves-effect waves-light"><i class="fas fa-eye"></i></a>
+                                                    class="btn btn-primary waves-effect waves-light" target="_blank"><i class="fas fa-eye"></i></a>
                                             @endcan
                                         </td>
                                     </tr>

@@ -20,6 +20,7 @@
                                 <li><a href="{{ route('cards.index') }}">{{ __('Card List') }}</a>
                                 </li>
                             @endcan
+
                             @can('cards.create')
                                 <li><a href="{{ route('cards.create') }}">{{ __('Add New Card') }}</a>
                                 </li>

@@ -33,10 +33,19 @@ Route::post('/logout', [AuthSessionController::class, 'destroy'])
 
 Route::group(['prefix' => 'cards', 'as' => 'cards.'], function () {
     Route::get('/', [CardController::class, 'index'])->name('index');
+    Route::get('/get-card-details', [CardController::class, 'get_card_details'])->name('get_card_details');
+    Route::post('/store-card-attachment', [CardController::class, 'store_card_attachment'])->name('store_card_attachment');
+    Route::post('/store-card-checklist', [CardController::class, 'store_card_checklist'])->name('store_card_checklist');
+    Route::get('/get-checklist-details', [CardController::class, 'get_checklist_details'])->name('get_checklist_details');
+    Route::post('/store-card-task', [CardController::class, 'store_card_task'])->name('store_card_task');
+    Route::get('/get-task-details', [CardController::class, 'get_task_details'])->name('get_task_details');
+    Route::post('/remove-card-attachment', [CardController::class, 'remove_card_attachment'])->name('remove_card_attachment');
+    Route::post('/remove-card-checklist', [CardController::class, 'remove_card_checklist'])->name('remove_card_checklist');
+    Route::post('/remove-card-task', [CardController::class, 'remove_card_task'])->name('remove_card_task');
     Route::get('/create', [CardController::class, 'create'])->name('create');
-    Route::post('/store', [CardController::class, 'store'])->name('store');
-    Route::get('/edit/{id}', [CardController::class, 'edit'])->name('edit');
     Route::get('/show/{id}', [CardController::class, 'show'])->name('show');
-    Route::put('/update/{id}', [CardController::class, 'update'])->name('update');
+    Route::post('/store', [CardController::class, 'store'])->name('store');
+    Route::post('/card-update', [CardController::class, 'update_card'])->name('update_card');
+    Route::get('/edit/{id}', [CardController::class, 'edit'])->name('edit');
     Route::get('/delete/{id}', [CardController::class, 'delete'])->name('delete');
 });

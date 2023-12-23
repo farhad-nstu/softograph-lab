@@ -30,12 +30,21 @@ class Card extends Model
         });
     }
 
-    public function createdAuthor()
+    public function created_author()
     {
         return $this->belongsTo(Admin::class, 'created_by');
     }
-    public function updatedAuthor()
+    public function updated_author()
     {
         return $this->belongsTo(Admin::class, 'updated_by');
+    }
+    public function card_attachments(){
+        return $this->hasMany(CardAttachment::class, 'card_id');
+    }
+    public function card_checklists(){
+        return $this->hasMany(Checklist::class, 'card_id');
+    }
+    public function card_tasks(){
+        return $this->hasMany(CardTask::class, 'card_id');
     }
 }

@@ -2,37 +2,33 @@
 
 
 namespace App\Traits;
-use Illuminate\Support\Facades\Mail;
-use App\Models\Policy;
-use App\Models\Transaction;
-use App\Models\Collection;
-use Carbon\Carbon;
-use PDF;
-use DB;
+
+use App\Models\CardAttachment;
 
 trait DocumentTrait
 {
-    public function process_images($request, $product_id){
+    public function process_documents($request, $obj_id=null){
         $status = false;
-        if (isset($request->documents) && count($request->documents) > 0) {
-            for ($i = 0; $i < count($request->documents); $i++) {
-                $directory = 'images/products' . '/' . $$product_id;
+        if (isset($request->card_documents) && count($request->card_documents) > 0) {
+            for ($i = 0; $i < count($request->card_documents); $i++) {
+                $directory = 'card/documents' . '/' . $obj_id;
 
-                // $claimDoc = new ProductImage();
-                // $claimDoc->claim_id = $claim_id;
-                // $claimDoc->document_path = "test.jpg";
-                // $claimDoc->save();
-                // $imageData = $this->process_image($request->documents[$i], $directory, $claimDoc->id);
-                // $claimDoc->document_path = $directory.'/'.$imageData['imageName'];
-                // $claimDoc->save();
-                // $status = true;
+                $card_doc = new CardAttachment();
+                $card_doc->card_id = $obj_id;
+                $card_doc->document_path = "test.jpg";
+                $card_doc->save();
+                $file_data = $this->process_image($request->card_documents[$i], $directory, $card_doc->id);
+                $card_doc->document_path = $directory.'/'.$file_data['imageName'];
+                if($card_doc->save()){
+                    $status = true;
+                }
             }
         }
         return $status;
     }
 
-    public function store_image($image, $path, $document_id=null){
-        $imageData = [];
+    public function process_image($image, $path, $document_id=null){
+        $file_data = [];
         $extension = $image->getClientOriginalExtension();
         $imageName = $document_id . '.' . $extension;
         $image->move(($path . '/'), $imageName);
